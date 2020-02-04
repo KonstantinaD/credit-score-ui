@@ -14,7 +14,7 @@ class ContactUs extends Component {
                     <h4><b>Contact Us</b></h4>
                     <br />
                     <h6><b>Email Address</b></h6>
-                    <p>connect@inspireme.com</p>
+                    <p>connect@credita.com</p>
                     <br />
                     <h6><b>Phone Number</b></h6>
                     <p>00 44 7645678906</p>

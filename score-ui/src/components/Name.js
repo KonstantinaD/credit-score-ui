@@ -11,7 +11,7 @@ class Name extends Component {
         super(props);
         this.state = {
             item: {
-              name: ''
+                name: ''
             },
             score: null
         };
@@ -27,42 +27,42 @@ class Name extends Component {
 
 
     handleSubmit(event) {
-        const regex = /^([a-zA-Z]+[ .'-]?)+([ ,]?)+[a-zA-Z]+.?$/;
+        const regex = /^([a-zA-Z]+[ .'-]?)+([ ,]?)+[a-zA-Z]+\.?$/;
         event.preventDefault()
 
         if (this.state.item.name === '') {
             this.setState({
                 score: null
             });
-            alert('Please enter a valid name');
+            alert('Please enter a name');
             return;
         }
-        
+
         if (!this.state.item.name.match(regex)) {
             this.setState({
                 score: null
             });
-            alert('Please enter only letter(s) and no spaces');
+            alert('Please enter a valid name');
             return;
         }
 
-            fetch('/score', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(this.state.item)
-            })
-                .then(response => response.json())
-                .then(data =>
-                    this.setState({
-                        score: data
-                    })
-                );
+        fetch('/score', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.item)
+        })
+            .then(response => response.json())
+            .then(data =>
+                this.setState({
+                    score: data
+                })
+            );
     }
 
-render() {
+    render() {
 
         return (
             <div>
@@ -74,12 +74,12 @@ render() {
                     <br />
                     <Form onSubmit={this.handleSubmit}>
                         <Col sm="12" md={{ size: 6, offset: 3 }}>
-                        <FormGroup>
-                            <Label for="name">Name<span style={{ color: 'red' }}> *</span></Label>
-                            <Input type="text" name="name" id="name" value={this.state.item.name || ''}
-                                onChange={this.handleChange}/>
-                        </FormGroup>
-                       </Col>
+                            <FormGroup>
+                                <Label for="name">Name<span style={{ color: 'red' }}> *</span></Label>
+                                <Input type="text" name="name" id="name" value={this.state.item.name || ''}
+                                    onChange={this.handleChange} />
+                            </FormGroup>
+                        </Col>
                         <FormGroup>
                             <Button color="primary" type="submit">Get Score</Button>{' '}
                         </FormGroup>
